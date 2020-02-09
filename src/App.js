@@ -3,17 +3,24 @@ import PlayerAmountChooser from "./playerAmountChooser";
 import PlayerPresenter from "./playerPresenter";
 import Timer from "./timer";
 import Finished from "./finished";
+import GetWord from "./words";
 import "./styles.css";
 
 export default function App() {
-  const [state, setState] = useState(null);
+  const [state, setState] = useState({
+    numberOfPlayers: null,
+    traitor: null,
+    presenting: null,
+    finished: false
+  });
 
   const handlePlayerNumber = no => {
     setState({
       numberOfPlayers: no,
       traitor: Math.floor(Math.random() * (no - 1)) + 1,
       presenting: 0,
-      finished: false
+      finished: false,
+      word: GetWord()
     });
   };
 
@@ -25,7 +32,7 @@ export default function App() {
     setState({ ...state, finished: true });
   };
 
-  if (state) {
+  if (state.numberOfPlayers) {
     if (state.finished) {
       return <Finished />;
     } else if (state.presenting < state.numberOfPlayers)
@@ -40,7 +47,7 @@ export default function App() {
                 ? "traitor"
                 : "common"
             }
-            word="Fiskbulle"
+            word={state.word}
             onNext={handleNext}
             key={state.presenting}
           />

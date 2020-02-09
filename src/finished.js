@@ -21,7 +21,7 @@ export default function PlayerAmountChooser() {
         Röstning
       </Typography>
       <Typography className={classes.text} gutterBottom>
-        Har ni mislsycaks att gissa rätt på ordet? I sådana fall har ni tyvärr
+        Har ni misslyckats att gissa rätt på ordet? I sådana fall har ni tyvärr
         förlorat.
       </Typography>
       <Typography className={classes.text} gutterBottom>
